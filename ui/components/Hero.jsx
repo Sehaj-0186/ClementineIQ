@@ -1,23 +1,13 @@
 "use client";
 import React, { useState } from "react";
 import { useAppContext } from "./context/index";
-import { useRouter } from "next/navigation";
 import { useAccount } from "wagmi";
-import "../app/globals.css"
+import "../app/globals.css";
 
-const Hero = () => {
+const Hero = ({ onGetStarted }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { setIsClicked } = useAppContext();
-  const router = useRouter();
   const { isConnected } = useAccount();
-
-  const handleClick = () => {
-    if (!isConnected) {
-      return; 
-    }
-    setIsClicked(true);
-    router.push("/dashboard/overview");
-  };
 
   return (
     <div className="flex flex-col absolute top-32 w-full h-[60vh] items-center justify-evenly">
@@ -37,24 +27,27 @@ const Hero = () => {
         <span>Make smarter decisions with real-time insights.</span>
       </div>
       <div className="mt-4 relative">
-
         {!isConnected && isHovered && (
-          <div className={`absolute bottom-[120%] text-center w-64 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-zinc-900 text-gray-200 text-sm rounded transition-opacity duration-300 opacity-100`}>
+          <div
+            className={`absolute bottom-[120%] text-center w-64 left-1/2 transform -translate-x-1/2 px-4 py-2 bg-zinc-900 text-gray-200 text-sm rounded transition-opacity duration-300 opacity-100`}
+          >
             Connect your Wallet first!
           </div>
         )}
-        
+
         <button
-  className={`bg-transparent border-[1px] border-zinc-600 rounded-md px-6 py-2 text-gray-300 transition-all ease-in-out duration-300 ${
-    !isConnected ? "opacity-50 cursor-not-allowed" : "hover:bg-gradient-to-br hover:text-transparent bg-clip-text from-pink-500 to-blue-500"
-  }`}
-  onMouseEnter={() => setIsHovered(true)}
-  onMouseLeave={() => setIsHovered(false)}
-  onClick={handleClick}
-  disabled={!isConnected}
->
-  {!isConnected ? "Connect Wallet First" : "Get Started!"}
-</button>
+          className={`bg-transparent border-[1px] border-zinc-600 rounded-md px-6 py-2 text-gray-300 transition-all ease-in-out duration-300 ${
+            !isConnected
+              ? "opacity-50 cursor-not-allowed"
+              : "hover:bg-gradient-to-br hover:text-transparent bg-clip-text from-pink-500 to-blue-500"
+          }`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          onClick={onGetStarted}
+          disabled={!isConnected}
+        >
+          {!isConnected ? "Connect Wallet First" : "Get Started!"}
+        </button>
       </div>
     </div>
   );
