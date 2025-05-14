@@ -54,7 +54,7 @@ const LandingPage = () => {
               logo="https://irp.cdn-website.com/e81c109a/dms3rep/multi/orange-web3-logo-v2a-20241018.svg"
               logoAlt="Orange Web3"
               walletButtonText="Connect Wallet"
-              showConnectWallet={false}
+              showConnectWallet={true}
               separatorText="OR"
               features={{
                 enableWalletConnect: true,

@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body>
         <BedrockPassportProvider
           baseUrl="https://api.bedrockpassport.com"
-          authCallbackUrl="https://loacalhost:3000/dashboard"
+          authCallbackUrl="https://loacalhost:3000/dashboard/overview"
           tenantId="orange-xkkhmqyshn"
           walletConnectId="c60d838bc7682699062e8af4283518b3"
         >
